@@ -1,7 +1,7 @@
 const db = require("./connection");
 const { User, Product, Category } = require("../models");
 
-const seeds = async () => {
+db.once("open", async () => {
   await Category.deleteMany();
 
   const categories = await Category.insertMany([
@@ -153,6 +153,4 @@ const seeds = async () => {
   console.log("users seeded");
 
   process.exit();
-};
-
-module.exports = seeds;
+});

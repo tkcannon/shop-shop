@@ -1,7 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const path = require('path');
-const seeds = require("./config/seeds");
+const path = require("path");
 const { typeDefs, resolvers } = require("./schemas");
 const { authMiddleware } = require("./utils/auth");
 const db = require("./config/connection");
@@ -32,7 +31,6 @@ app.get("*", (req, res) => {
 
 db.once("open", () => {
   app.listen(PORT, () => {
-    seeds();
     console.log(`API server running on port ${PORT}!`);
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
