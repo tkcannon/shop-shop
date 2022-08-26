@@ -18,26 +18,26 @@ export const reducer = (state, action) => {
     case UPDATE_PRODUCTS:
       return {
         ...state,
-        products: [...action.products]
+        products: [...action.products],
       };
     // if action type value is the value of `UPDATE_CATEGORIES`, return a new state object with an updated categories array
     case UPDATE_CATEGORIES:
       return {
         ...state,
-        categories: [...action.categories]
+        categories: [...action.categories],
       };
 
     case UPDATE_CURRENT_CATEGORY:
       return {
         ...state,
-        currentCategory: action.currentCategory
+        currentCategory: action.currentCategory,
       };
 
     case ADD_TO_CART:
       return {
         ...state,
         cartOpen: true,
-        cart: [...state.cart, action.product]
+        cart: [...state.cart, action.product],
       };
 
     case ADD_MULTIPLE_TO_CART:
@@ -47,39 +47,39 @@ export const reducer = (state, action) => {
       };
 
     case REMOVE_FROM_CART:
-      let newState = state.cart.filter(product => {
+      let newState = state.cart.filter((product) => {
         return product._id !== action._id;
       });
 
       return {
         ...state,
         cartOpen: newState.length > 0,
-        cart: newState
+        cart: newState,
       };
 
     case UPDATE_CART_QUANTITY:
       return {
         ...state,
         cartOpen: true,
-        cart: state.cart.map(product => {
+        cart: state.cart.map((product) => {
           if (action._id === product._id) {
             product.purchaseQuantity = action.purchaseQuantity;
           }
           return product;
-        })
+        }),
       };
 
     case CLEAR_CART:
       return {
         ...state,
         cartOpen: false,
-        cart: []
+        cart: [],
       };
 
     case TOGGLE_CART:
       return {
         ...state,
-        cartOpen: !state.cartOpen
+        cartOpen: !state.cartOpen,
       };
 
     default:
